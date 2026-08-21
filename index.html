@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BIBI自媒體實體課程｜把你的興趣與專業，變成有人願意看的內容</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF6EF;
+    --oat:#EDE3D2;
+    --oat-light:#F5EFE3;
+    --olive:#6E7A54;
+    --olive-dark:#4B5438;
+    --olive-deep:#3A4129;
+    --text:#3B362E;
+    --text-soft:#7A7266;
+    --accent:#DD8A3E;
+    --accent-dark:#B96C29;
+    --white:#FFFFFF;
+    --line:rgba(59,54,46,0.10);
+    --radius-lg:26px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow:0 10px 30px rgba(75,84,56,0.08);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Noto Sans TC', sans-serif;
+    line-height:1.8;
+    padding-bottom:78px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{ font-family:'Noto Serif TC', serif; }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 22px; }
+  section{ padding:72px 0; position:relative; }
+  @media (max-width:640px){ section{ padding:52px 0; } }
+
+  /* ---------- eyebrow / small labels ---------- */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; letter-spacing:.14em; color:var(--olive-dark);
+    font-weight:600; margin-bottom:16px;
+  }
+  .eyebrow::before{
+    content:""; width:16px; height:2px; background:var(--accent); border-radius:2px;
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,246,239,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:14px 22px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ font-family:'Noto Serif TC',serif; font-weight:700; font-size:19px; color:var(--olive-deep); letter-spacing:.02em;}
+  .brand span{ color:var(--accent); }
+  .nav-links{ display:none; gap:28px; font-size:14.5px; font-weight:500; color:var(--text-soft); }
+  .nav-links a:hover{ color:var(--olive-dark); }
+  @media (min-width:860px){ .nav-links{ display:flex; align-items:center; } }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:13px 28px; border-radius:999px; font-weight:600; font-size:15px;
+    cursor:pointer; border:none; transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-line{
+    background:var(--olive-dark); color:#fff;
+    box-shadow:0 8px 20px rgba(75,84,56,0.28);
+  }
+  .btn-line:hover{ background:var(--olive-deep); box-shadow:0 10px 24px rgba(75,84,56,0.34); }
+  .btn-ghost{
+    background:transparent; color:var(--olive-dark); border:1.5px solid var(--olive-dark);
+  }
+  .btn-ghost:hover{ background:var(--oat-light); }
+  .btn-sm{ padding:11px 22px; font-size:14px; }
+  .btn-nav{ padding:9px 20px; font-size:13.5px; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-top:64px; padding-bottom:56px; overflow:hidden; }
+  .hero-inner{ position:relative; text-align:center; max-width:760px; margin:0 auto; }
+  .hero-blob{
+    position:absolute; border-radius:50%; z-index:-1; filter:blur(2px);
+  }
+  .hero-blob.b1{ width:280px; height:280px; background:radial-gradient(circle,var(--oat) 0%, transparent 70%); top:-80px; left:-100px; }
+  .hero-blob.b2{ width:220px; height:220px; background:radial-gradient(circle, rgba(221,138,62,0.16) 0%, transparent 70%); bottom:-60px; right:-80px; }
+  .hero h1{
+    font-size:clamp(30px, 6vw, 46px); font-weight:700; color:var(--olive-deep);
+    line-height:1.45; letter-spacing:.01em; margin-bottom:22px;
+  }
+  .hero p.sub{
+    font-size:clamp(15.5px,2.4vw,18px); color:var(--text-soft); max-width:560px; margin:0 auto 34px;
+  }
+  .hero-cta{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:22px; }
+  .hero-note{ font-size:13.5px; color:var(--text-soft); }
+
+  /* organic growth line signature motif */
+  .leaf-divider{
+    display:flex; align-items:center; justify-content:center; gap:10px; margin:44px auto 0; max-width:340px;
+  }
+  .leaf-divider .ln{ flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--olive) 50%, transparent); }
+  .leaf-divider svg{ flex-shrink:0; }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1fr; gap:44px; align-items:start;
+  }
+  @media (min-width:860px){ .about-grid{ grid-template-columns: 0.9fr 1.5fr; gap:64px; } }
+  .about-portrait{
+    position:relative; aspect-ratio:4/5; border-radius:var(--radius-lg);
+    background:var(--oat);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-soft); font-size:14px; text-align:center; padding:20px;
+    overflow:hidden;
+  }
+  .about-portrait::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.5), transparent 60%);
+  }
+  .about-portrait .ph-label{ position:relative; z-index:1; }
+  .about h2{ font-size:clamp(24px,3.4vw,30px); color:var(--olive-deep); margin-bottom:22px; font-weight:600; }
+  .about p{ color:var(--text); margin-bottom:16px; font-size:15.5px; }
+  .ig-badge{
+    display:inline-flex; align-items:center; gap:6px; margin:2px 0 18px;
+    padding:7px 14px; border-radius:999px; background:var(--oat-light);
+    color:var(--olive-dark); font-size:13px; font-weight:600;
+  }
+  .ig-badge:hover{ background:var(--oat); }
+  .two-session-note{
+    margin:0 0 18px; padding:12px 14px; background:rgba(221,138,62,0.08);
+    border:1px solid rgba(221,138,62,0.35); border-radius:var(--radius-sm);
+    font-size:13px; color:var(--accent-dark); line-height:1.75;
+  }
+  .two-session-note strong{ font-weight:700; }
+  .quote-block{
+    margin-top:26px; padding:22px 24px; background:var(--oat-light);
+    border-left:3px solid var(--accent); border-radius:var(--radius-sm);
+    font-family:'Noto Serif TC',serif; font-size:16px; color:var(--olive-deep); font-weight:500;
+    line-height:1.9;
+  }
+  .pain-quotes{ margin:20px 0 6px; }
+  .pain-quotes li{
+    list-style:none; color:var(--text-soft); font-size:14.5px; padding:9px 0 9px 22px; position:relative;
+  }
+  .pain-quotes li::before{ content:"—"; position:absolute; left:0; color:var(--accent); }
+
+  /* ---------- who for ---------- */
+  .whofor{ background:var(--oat-light); border-radius:36px; margin:0 16px; }
+  @media (min-width:860px){ .whofor{ margin:0 auto; max-width:calc(1080px + 32px); } }
+  .whofor .wrap{ padding-top:12px; }
+  .whofor h2{ text-align:center; font-size:clamp(24px,3.4vw,30px); color:var(--olive-deep); margin-bottom:8px; }
+  .whofor .center-sub{ text-align:center; color:var(--text-soft); margin-bottom:40px; font-size:15px; }
+  .card-grid{ display:grid; grid-template-columns:repeat(1,1fr); gap:16px; }
+  @media (min-width:600px){ .card-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:900px){ .card-grid{ grid-template-columns:repeat(3,1fr); } }
+  .pain-card{
+    background:var(--white); border-radius:var(--radius-md); padding:22px 20px;
+    box-shadow:var(--shadow); font-size:14.5px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .pain-card .dot{
+    flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--accent); margin-top:8px;
+  }
+  .whofor-end{ text-align:center; margin-top:34px; color:var(--olive-dark); font-weight:600; font-size:15px; }
+
+  /* ---------- plans ---------- */
+  .plans h2, .compare h2{ text-align:center; font-size:clamp(26px,3.6vw,32px); color:var(--olive-deep); margin-bottom:12px; }
+  .plans .center-sub{ text-align:center; color:var(--text-soft); margin-bottom:48px; }
+  .plan-name-en{ font-size:12.5px; color:var(--text-soft); letter-spacing:.1em; font-weight:600; margin-bottom:4px; }
+  .plan-name{ font-family:'Noto Serif TC',serif; font-size:21px; font-weight:700; color:var(--olive-deep); margin-bottom:10px; }
+  .plan-tagline{ font-size:14px; color:var(--text-soft); margin-bottom:20px; }
+  .plan-section-label{
+    font-size:12.5px; font-weight:700; color:var(--olive-dark); letter-spacing:.06em;
+    margin:16px 0 8px; text-transform:uppercase;
+  }
+  .plan-list{ list-style:none; }
+  .plan-list li{
+    font-size:14px; color:var(--text); padding:5px 0 5px 20px; position:relative; line-height:1.6;
+  }
+  .plan-list li::before{ content:"·"; position:absolute; left:2px; color:var(--accent); font-weight:900; font-size:18px; top:2px; }
+  .upsell-note{
+    margin-top:16px; padding:12px 14px; background:rgba(221,138,62,0.10);
+    border:1px dashed var(--accent); border-radius:var(--radius-sm);
+    font-size:12.5px; color:var(--accent-dark); line-height:1.7;
+  }
+  .upsell-note strong{ font-weight:700; }
+
+  /* ---------- venture card (plan D, non-course) ---------- */
+  .venture-card{
+    max-width:720px; margin:0 auto; background:var(--white);
+    border-radius:var(--radius-lg); padding:36px 30px;
+    border:1.5px dashed var(--olive); box-shadow:var(--shadow);
+  }
+  .venture-note{
+    display:inline-block; font-size:12.5px; font-weight:700; color:var(--olive-dark);
+    background:var(--oat-light); padding:6px 14px; border-radius:999px; margin-bottom:18px;
+  }
+  .venture-p{ font-size:14.5px; color:var(--text); margin:14px 0; line-height:1.85; }
+  .venture-highlight{
+    margin:18px 0 22px; padding:16px 18px; background:var(--oat-light);
+    border-radius:var(--radius-sm); font-size:14.5px; color:var(--olive-deep); line-height:1.8;
+  }
+  .venture-highlight strong{ color:var(--accent-dark); font-weight:700; }
+  .venture-price-note{
+    margin-top:22px; padding:18px 20px; background:rgba(221,138,62,0.08);
+    border-left:3px solid var(--accent); border-radius:var(--radius-sm);
+    font-size:13.5px; color:var(--accent-dark); line-height:1.85;
+  }
+  .venture-price-note strong{ font-weight:700; }
+
+  /* week timeline (signature growth motif for C plan) */
+  .week-path{ position:relative; padding-left:22px; margin:14px 0 4px; }
+  .week-path::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1.5px;
+    background:repeating-linear-gradient(180deg, var(--olive) 0 4px, transparent 4px 8px);
+  }
+  .week-item{ position:relative; margin-bottom:14px; }
+  .week-item:last-child{ margin-bottom:0; }
+  .week-item::before{
+    content:""; position:absolute; left:-22px; top:3px; width:10px; height:10px; border-radius:50%;
+    background:var(--olive); border:2px solid var(--white); box-shadow:0 0 0 1px var(--olive);
+  }
+  .week-item .week-title{ font-weight:700; color:var(--olive-deep); font-size:13.5px; margin-bottom:2px; }
+  .week-item .week-desc{ font-size:12.5px; color:var(--text-soft); }
+
+  /* ---------- compare table ---------- */
+  .compare{ background:var(--oat-light); border-radius:36px; margin:0 16px; }
+  @media (min-width:860px){ .compare{ margin:0 auto; max-width:calc(1080px + 32px); } }
+  .compare-cards{ display:grid; grid-template-columns:1fr; gap:20px; }
+  @media (min-width:620px){ .compare-cards{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:900px){ .compare-cards{ grid-template-columns:repeat(3,1fr); align-items:stretch; } }
+  .compare-card{
+    background:var(--white); border-radius:var(--radius-lg); padding:28px 26px;
+    box-shadow:var(--shadow); border:1px solid var(--line); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .compare-card.featured{ border:1.5px solid var(--accent); box-shadow:0 16px 40px rgba(221,138,62,0.16); }
+  .compare-card.venture{ border:1.5px dashed var(--olive); }
+  .cc-tag{
+    position:absolute; top:-13px; left:26px; background:var(--accent); color:#fff;
+    font-size:12px; font-weight:700; padding:6px 16px; border-radius:999px; letter-spacing:.04em;
+  }
+  .cc-tag.venture-tag{ background:var(--olive-dark); }
+  .cc-head{ display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+  .cc-letter{
+    flex-shrink:0; width:38px; height:38px; border-radius:12px; background:var(--oat);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC',serif; font-weight:700; font-size:17px; color:var(--olive-dark);
+  }
+  .compare-card.featured .cc-letter{ background:rgba(221,138,62,0.15); color:var(--accent-dark); }
+  .cc-name{ font-family:'Noto Serif TC',serif; font-weight:600; font-size:16.5px; color:var(--olive-deep); }
+  .cc-row{
+    padding:12px 0; border-top:1px solid var(--line);
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .cc-label{ font-size:12px; color:var(--text-soft); font-weight:600; letter-spacing:.04em; }
+  .cc-val{ font-size:14px; color:var(--text); line-height:1.6; }
+  .cc-price-row{
+    padding-bottom:4px;
+    display:flex; align-items:baseline; justify-content:space-between;
+  }
+  .cc-price-row span:first-child{ font-size:13px; color:var(--text-soft); font-weight:600; }
+  .cc-price{ font-family:'Noto Serif TC',serif; font-size:24px; font-weight:700; color:var(--accent-dark); }
+  .price-wrap{ display:flex; align-items:baseline; gap:8px; }
+  .price-original{ font-size:13px; color:var(--text-soft); text-decoration:line-through; opacity:.75; }
+  .price-quota{
+    font-size:12px; font-weight:700; color:var(--accent-dark); background:rgba(221,138,62,0.12);
+    display:inline-block; padding:4px 10px; border-radius:999px; margin-bottom:14px;
+  }
+
+  /* ---------- plan expand accordion (inside compare-card) ---------- */
+  .plan-expand{ margin-top:auto; padding-top:16px; border-top:1px solid var(--line); }
+  .plan-expand summary{
+    list-style:none; cursor:pointer; font-size:13.5px; font-weight:700; color:var(--olive-dark);
+    display:flex; align-items:center; justify-content:center; gap:6px; padding:4px 0;
+  }
+  .plan-expand summary::-webkit-details-marker{ display:none; }
+  .plan-expand summary::after{ content:"▾"; font-size:11px; transition:transform .2s ease; }
+  .plan-expand[open] summary::after{ transform:rotate(180deg); }
+  .plan-expand-body{ padding-top:6px; }
+  .plan-expand-body .plan-section-label:first-of-type{ margin-top:14px; }
+
+  /* ---------- prep / payment ---------- */
+  .two-col{ display:grid; grid-template-columns:1fr; gap:20px; }
+  @media (min-width:760px){ .two-col{ grid-template-columns:1fr 1fr; } }
+  .info-card{
+    background:var(--white); border-radius:var(--radius-lg); padding:32px 28px; box-shadow:var(--shadow); border:1px solid var(--line);
+  }
+  .info-card h3{ font-size:19px; color:var(--olive-deep); margin-bottom:18px; font-weight:600; }
+  .info-card ul{ list-style:none; margin-bottom:8px; }
+  .info-card ul li{ font-size:14.5px; padding:7px 0 7px 22px; position:relative; color:var(--text); }
+  .info-card ul li::before{ content:"·"; position:absolute; left:2px; top:6px; color:var(--accent); font-size:18px; font-weight:900; }
+  .info-card .note{ font-size:13px; color:var(--text-soft); margin-top:14px; }
+  .info-card .btn{ margin-top:18px; }
+
+  /* ---------- signup steps ---------- */
+  .steps-section h2{ text-align:center; font-size:clamp(24px,3.4vw,30px); color:var(--olive-deep); margin-bottom:40px; }
+  .steps-flow{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:12px;
+  }
+  @media (min-width:760px){
+    .steps-flow{ display:flex; flex-direction:row; align-items:stretch; gap:0; }
+  }
+  .step-card{
+    flex:1; background:var(--white); border-radius:var(--radius-md); padding:20px 14px;
+    text-align:center; box-shadow:var(--shadow); border:1px solid var(--line);
+  }
+  @media (min-width:760px){ .step-card{ padding:26px 22px; } }
+  .step-num{
+    width:36px; height:36px; border-radius:50%; background:var(--oat);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC',serif; font-weight:700; font-size:15px; margin:0 auto 10px; color:var(--olive-dark);
+  }
+  @media (min-width:760px){ .step-num{ width:40px; height:40px; font-size:16px; margin-bottom:14px; } }
+  .step-title{ font-family:'Noto Serif TC',serif; font-weight:600; font-size:14.5px; color:var(--olive-deep); margin-bottom:5px; }
+  @media (min-width:760px){ .step-title{ font-size:16px; margin-bottom:6px; } }
+  .step-card p{ font-size:12.5px; color:var(--text-soft); }
+  @media (min-width:760px){ .step-card p{ font-size:13.5px; } }
+  .step-arrow{ display:none; }
+  @media (min-width:760px){ .step-arrow{ display:flex; align-items:center; justify-content:center; flex-shrink:0; padding:0 10px; } }
+  .steps-note{ text-align:center; font-size:13.5px; color:var(--text-soft); margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; }
+
+  /* ---------- FAQ ---------- */
+  .faq h2{ text-align:center; font-size:clamp(24px,3.4vw,30px); color:var(--olive-deep); margin-bottom:40px; }
+  .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+
+  /* ---------- business-mini (low-key, understated) ---------- */
+  .business-mini-section{ padding:0 0 44px; }
+  .business-mini-section .wrap{ max-width:640px; }
+  .business-mini{
+    border-top:1px solid var(--line); padding-top:20px;
+  }
+  .business-mini summary{
+    list-style:none; cursor:pointer; font-size:13px; color:var(--text-soft);
+    text-align:center; padding:4px 0;
+  }
+  .business-mini summary::-webkit-details-marker{ display:none; }
+  .business-mini summary::after{ content:" ▾"; }
+  .business-mini[open] summary::after{ content:" ▴"; }
+  .business-mini-body{ padding-top:16px; }
+  .business-mini-body .venture-highlight,
+  .business-mini-body .venture-price-note{ font-size:13px; }
+  .business-mini-body .venture-p{ font-size:13px; }
+  .business-mini-body .plan-section-label{ font-size:11.5px; }
+  .business-mini-body .plan-list li{ font-size:13px; }
+
+  details.faq-item{
+    background:var(--white); border-radius:var(--radius-md); padding:2px 22px; border:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(75,84,56,0.05);
+  }
+  details.faq-item summary{
+    list-style:none; cursor:pointer; padding:18px 30px 18px 0; position:relative;
+    font-weight:600; font-size:15px; color:var(--olive-deep);
+  }
+  details.faq-item summary::-webkit-details-marker{ display:none; }
+  details.faq-item summary::after{
+    content:"+"; position:absolute; right:0; top:14px; font-size:22px; color:var(--accent); font-weight:400;
+    transition:transform .2s ease;
+  }
+  details.faq-item[open] summary::after{ content:"–"; }
+  details.faq-item .faq-a{ padding:0 0 20px; color:var(--text-soft); font-size:14.5px; line-height:1.85; }
+
+  /* ---------- final cta ---------- */
+  .final{ text-align:center; }
+  .final-blob{
+    width:100%; max-width:640px; margin:0 auto; padding:56px 30px; background:var(--oat);
+    border-radius:40px; position:relative; overflow:hidden;
+  }
+  .final h2{ font-size:clamp(24px,3.6vw,32px); color:var(--olive-deep); margin-bottom:22px; line-height:1.5; }
+  .final p{ color:var(--text); font-size:15px; max-width:520px; margin:0 auto 12px; }
+  .final-cta-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px; margin-bottom:16px; }
+  .final .hero-note{ margin-top:6px; }
+
+  footer{ text-align:center; padding:36px 22px; font-size:13px; color:var(--text-soft); }
+
+  /* ---------- mobile sticky cta ---------- */
+  .mobile-sticky{
+    position:fixed; bottom:0; left:0; right:0; z-index:60;
+    background:var(--white); border-top:1px solid var(--line);
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+    box-shadow:0 -8px 24px rgba(75,84,56,0.10);
+  }
+  @media (min-width:900px){ .mobile-sticky .btn{ max-width:280px; margin:0 auto; display:flex; } }
+  .mobile-sticky .btn{ width:100%; }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  ::selection{ background:var(--accent); color:#fff; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">BIBI<span>・</span>自媒體實體課程</div>
+    <nav class="nav-links">
+      <a href="#about">關於BIBI</a>
+      <a href="#plans">課程方案</a>
+      <a href="#faq">常見問題</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="eyebrow" style="justify-content:center;">BIBI 自媒體實體課程</div>
+    <h1>把你的興趣與專業<br>變成有人願意看的內容</h1>
+    <p class="sub">從定位、拍攝、剪輯到個人IP經營，帶你從不知道怎麼開始，到真正完成並發布自己的短影音。</p>
+    <p class="hero-note">適合自媒體新手、創作者、品牌經營者，以及想透過自媒體發展個人事業的你。</p>
+    <div class="leaf-divider">
+      <span class="ln"></span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 4 4 9 4 14c0 4 3.5 7 8 8 4.5-1 8-4 8-8 0-5-3-10-8-12z" stroke="#6E7A54" stroke-width="1.4"/><path d="M12 4v18" stroke="#6E7A54" stroke-width="1.2"/></svg>
+      <span class="ln"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap reveal" style="max-width:720px;">
+    <div class="about">
+      <div class="eyebrow">關於 BIBI</div>
+      <h2>哈囉，大家好，我是 BIBI！</h2>
+      <a href="https://www.instagram.com/carissa_bi?igsh=cThvd3hkeThubjdx&utm_source=qr" target="_blank" rel="noopener" class="ig-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+        @carissa_bi
+      </a>
+      <p>我曾經是一名幼兒園老師，現在是一位擁有七年網路經營經驗的自媒體創作者與團隊講師。</p>
+      <p>剛開始經營自媒體時，我也只是從兩百多位粉絲慢慢開始。一路從完全不懂定位、不知道要拍什麼，到現在累積三萬多位粉絲，並透過自媒體獲得許多品牌、住宿、美食及商業合作機會。</p>
+      <p>除了分享吃喝玩樂與日常生活，我也擁有實際的產品帶貨、社群銷售及個人品牌經營經驗，也曾陪伴身邊的素人夥伴找到方向，從探店、料理、旅遊等內容開始拍起、經營自己的社群——現在他們已經開始接到有收費的品牌合作案，甚至比原本的正職收入還要高。</p>
+      <p>我知道很多人也很嚮往自媒體的生活，想把自己的興趣、專業或原本的行業分享出去，卻常常卡在：</p>
+      <ul class="pain-quotes">
+        <li>我不知道自己適合分享什麼。</li>
+        <li>我很想開始，但完全不會拍、不會剪。</li>
+        <li>我已經發了一些影片，卻一直沒有方向。</li>
+        <li>我不知道怎麼把自己的工作或產品放進內容裡。</li>
+      </ul>
+      <p>所以我想把自己這七年累積的實戰經驗，整理成容易理解、可以實際操作的課程。不管你只是想學會剪輯，還是希望從零開始建立自己的個人IP，都可以找到適合自己的學習方案。</p>
+      <div class="quote-block">我不只想教你剪出一支影片，更想幫助你找到適合自己的內容方向，真正踏出經營自媒體的第一步。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO FOR ============ -->
+<section class="whofor">
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center;">這些課程適合誰</div>
+    <h2>你是不是也有這些想法？</h2>
+    <p class="center-sub">無論你目前在哪個階段，都可以從適合自己的方案開始。</p>
+    <div class="card-grid">
+      <div class="pain-card"><span class="dot"></span>完全不會拍攝及剪輯，不知道怎麼開始</div>
+      <div class="pain-card"><span class="dot"></span>想經營自媒體，卻找不到自己的定位</div>
+      <div class="pain-card"><span class="dot"></span>每次想拍影片，都不知道要拍什麼</div>
+      <div class="pain-card"><span class="dot"></span>已經會基本剪輯，但影片不夠吸引人</div>
+      <div class="pain-card"><span class="dot"></span>想把自己的工作、產品或專業放進內容</div>
+      <div class="pain-card"><span class="dot"></span>想透過興趣發展個人品牌與更多機會</div>
+      <div class="pain-card"><span class="dot"></span>想有人陪著實際操作，而不是上完課依然不會做</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANS (merged with compare) ============ -->
+<section id="plans">
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center;">課程方案</div>
+    <h2>找到適合你的學習方案</h2>
+    <p class="center-sub">一眼看懂每個方案的差異，點開卡片可以看更完整的課程內容。</p>
+
+    <div class="compare-cards">
+
+      <!-- A -->
+      <div class="compare-card">
+        <div class="cc-head">
+          <span class="cc-letter">A</span>
+          <span class="cc-name">手機拍剪入門班</span>
+        </div>
+        <div class="cc-price-row">
+          <span>價格</span>
+          <span class="price-wrap">
+            <span class="price-original">NT$3,980</span>
+            <span class="cc-price">NT$2,980</span>
+          </span>
+        </div>
+        <div class="price-quota">🔥 前5名限定價</div>
+        <div class="cc-row"><span class="cc-label">課程堂數</span><span class="cc-val">共2次上課（非同一天，分開約時間）</span></div>
+        <div class="cc-row"><span class="cc-label">適合對象</span><span class="cc-val">完全不會拍剪的新手</span></div>
+        <div class="cc-row"><span class="cc-label">學習重點</span><span class="cc-val">基礎拍攝與剪輯</span></div>
+        <div class="cc-row"><span class="cc-label">教學方式</span><span class="cc-val">一對一實體教學</span></div>
+        <div class="cc-row"><span class="cc-label">上課時間</span><span class="cc-val">第1堂約 2–3 小時</span></div>
+
+        <details class="plan-expand">
+          <summary>查看完整方案內容</summary>
+          <div class="plan-expand-body">
+            <div class="plan-tagline" style="margin-top:0;">第一次拍影片也不用怕，帶你用一支手機完成自己的第一支短影音，回家練習後還有第2堂陪你調整。</div>
+            <div class="two-session-note">
+              ⚠️ 本方案共<strong>2次上課</strong>，是<strong>兩個不同時間</strong>分開上課，不是同一天上完的：第1次是現場教學課，第2次是你回家練習後另外約時間的回訪調整課，<strong>必須在半年內完成第2次的預約</strong>。
+            </div>
+
+            <div class="plan-section-label">適合對象</div>
+            <ul class="plan-list">
+              <li>完全沒有拍攝、剪輯經驗的新手</li>
+              <li>下載了剪輯軟體，卻不知道怎麼使用</li>
+              <li>只想先學會基本拍攝及剪輯</li>
+              <li>希望有人在現場一步一步帶著操作</li>
+              <li>想為生活、工作或旅遊留下好看的影片</li>
+            </ul>
+
+            <div class="plan-section-label">第1次上課｜現場教學</div>
+            <ul class="plan-list">
+              <li>手機拍攝前的基本設定與構圖角度</li>
+              <li>短影音需要拍攝的素材與運鏡技巧</li>
+              <li>剪映／CapCut基本操作與剪輯順序</li>
+              <li>音樂、字幕、轉場與基礎調色</li>
+              <li>以「探店」情境實際拍攝及剪輯，完成第一支作品（也可依需求，拍攝你想要的題材，當天店家消費需自行付費）</li>
+            </ul>
+
+            <div class="plan-section-label">第2次上課｜回訪調整課（需另約時間）</div>
+            <ul class="plan-list">
+              <li>回家練習後，帶著實際拍攝的內容跟BIBI約時間</li>
+              <li>針對你的拍攝手法、剪輯問題實際講解調整</li>
+              <li>需在<strong>半年內</strong>完成預約，逾期恕無法受理</li>
+            </ul>
+
+            <div class="plan-section-label">完成課程後，你可以</div>
+            <ul class="plan-list">
+              <li>了解手機拍攝的基本方法與剪輯常用功能</li>
+              <li>知道一支短影音需要哪些畫面</li>
+              <li>現場完成一支可以發布的短影音</li>
+            </ul>
+
+            <div class="plan-section-label">課後服務</div>
+            <ul class="plan-list">
+              <li>課後30天內，可透過LINE詢問操作問題</li>
+            </ul>
+
+            <div class="upsell-note">
+              🎁 上完A方案，<strong>7天內</strong>加購B方案：B方案還在前5名優惠期間時，直接付當時的優惠價（目前$4,980）；等B恢復原價$6,980後，可折抵NT$1,000（$5,980）。兩者不疊加計算，詳見常見問題。
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- B -->
+      <div class="compare-card">
+        <div class="cc-head">
+          <span class="cc-letter">B</span>
+          <span class="cc-name">吸睛短影音實戰班</span>
+        </div>
+        <div class="cc-price-row">
+          <span>價格</span>
+          <span class="price-wrap">
+            <span class="price-original">NT$6,980</span>
+            <span class="cc-price">NT$4,980</span>
+          </span>
+        </div>
+        <div class="price-quota">🔥 前5名限定價</div>
+        <div class="cc-row"><span class="cc-label">課程堂數</span><span class="cc-val">共2次上課（非同一天，分開約時間）</span></div>
+        <div class="cc-row"><span class="cc-label">適合對象</span><span class="cc-val">已會基礎剪輯，想提升內容的人</span></div>
+        <div class="cc-row"><span class="cc-label">學習重點</span><span class="cc-val">選題、腳本、美感及觀看節奏</span></div>
+        <div class="cc-row"><span class="cc-label">教學方式</span><span class="cc-val">一對一實體教學</span></div>
+        <div class="cc-row"><span class="cc-label">上課時間</span><span class="cc-val">第1堂約 4 小時</span></div>
+
+        <details class="plan-expand">
+          <summary>查看完整方案內容</summary>
+          <div class="plan-expand-body">
+            <div class="plan-tagline" style="margin-top:0;">不只把影片剪完，更要讓觀眾願意停下來、繼續看完，回家練習後還有第2堂陪你調整。</div>
+            <div class="two-session-note">
+              ⚠️ 本方案共<strong>2次上課</strong>，是<strong>兩個不同時間</strong>分開上課，不是同一天上完的：第1次是現場教學課，第2次是你回家練習後另外約時間的回訪調整課，<strong>必須在半年內完成第2次的預約</strong>。
+            </div>
+
+            <div class="plan-section-label">適合對象</div>
+            <ul class="plan-list">
+              <li>已經會基本剪輯，但影片不夠吸引人</li>
+              <li>每次拍影片都不知道要拍什麼</li>
+              <li>想提升影片的畫面美感及節奏</li>
+              <li>影片持續發布，觀看及互動卻沒有起色</li>
+              <li>想學習腳本、標題及內容設計</li>
+            </ul>
+
+            <div class="plan-section-label">第1次上課｜現場教學</div>
+            <ul class="plan-list">
+              <li>短影音前三秒、吸睛標題與開頭設計</li>
+              <li>找到適合自己的影片題材與內容企劃</li>
+              <li>短影音腳本、簡易分鏡與節奏刪減</li>
+              <li>使用AI協助發想題材、腳本與文案</li>
+              <li>學員帳號及作品實際健檢</li>
+              <li>現場完成一支有明確目的的短影音</li>
+            </ul>
+
+            <div class="plan-section-label">第2次上課｜回訪調整課（需另約時間）</div>
+            <ul class="plan-list">
+              <li>回家練習後，帶著實際發布的作品跟BIBI約時間</li>
+              <li>針對題材、腳本、拍攝手法實際講解調整</li>
+              <li>需在<strong>半年內</strong>完成預約，逾期恕無法受理</li>
+            </ul>
+
+            <div class="plan-section-label">完成課程後，你可以</div>
+            <ul class="plan-list">
+              <li>知道什麼內容比較容易吸引目光</li>
+              <li>學會設計影片的開頭、腳本及節奏</li>
+              <li>完成一支更符合觀眾觀看習慣的短影音</li>
+            </ul>
+
+            <div class="plan-section-label">課後服務</div>
+            <ul class="plan-list">
+              <li>課後30天內，可透過LINE詢問操作問題</li>
+              <li>加贈1次作品簡單回饋</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <!-- D -->
+      <div class="compare-card venture">
+        <div class="cc-tag venture-tag">非課程方案</div>
+        <div class="cc-head">
+          <span class="cc-letter">D</span>
+          <span class="cc-name">自媒體事業合作</span>
+        </div>
+        <div class="cc-price-row"><span>費用</span><span class="cc-price" style="font-size:15px;">依方案＋200元開辦費</span></div>
+        <div class="cc-row"><span class="cc-label">適合對象</span><span class="cc-val">想發展額外收入及個人事業的人</span></div>
+        <div class="cc-row"><span class="cc-label">模式</span><span class="cc-val">賣貨賺價差，不用拉人、不用囤貨</span></div>
+        <div class="cc-row"><span class="cc-label">產品</span><span class="cc-val">纖體／美肌／大健康 3系列</span></div>
+        <div class="cc-row"><span class="cc-label">後續費用</span><span class="cc-val">無其他手續費／平台費，僅負擔產品費用</span></div>
+
+        <details class="plan-expand">
+          <summary>查看完整方案內容</summary>
+          <div class="plan-expand-body">
+            <div class="venture-note">注意：這不是一般課程方案</div>
+            <p class="venture-p" style="margin-top:14px;">如果你不只是想學自媒體，而是希望把自媒體發展成一份可以長期經營的事業，也可以進一步了解我的合作方式——「婕樂纖行動加盟」。</p>
+
+            <div class="venture-highlight">
+              很單純的商業模式：<strong>賣貨、賺價差</strong>。不用拉人、不用囤貨，喜歡什麼產品就買什麼，賣出去賺中間的價差就好。
+            </div>
+
+            <div class="plan-section-label">目前共3大系列產品</div>
+            <ul class="plan-list">
+              <li>纖體系列</li>
+              <li>美肌系列</li>
+              <li>大健康系列</li>
+            </ul>
+
+            <div class="plan-section-label">適合</div>
+            <ul class="plan-list">
+              <li>想發展額外收入</li>
+              <li>希望有產品可以分享</li>
+              <li>想要有完整課程、系統與團隊陪伴</li>
+              <li>想利用下班時間慢慢開始</li>
+              <li>不想自己處理囤貨及出貨的人</li>
+            </ul>
+
+            <p class="venture-p">加入後可以依照自己的方向選擇產品，搭配平台提供的課程、經營工具及團隊資源，利用下班時間開始學習與經營。</p>
+            <p class="venture-p">我也會依照每個人的狀況，陪你了解產品、找到適合的分享方向，慢慢建立自己的內容與事業。</p>
+
+            <div class="venture-price-note">
+              完成適合自己的加盟方案及 <strong>200元事業開辦費</strong> 後，即可開始使用平台提供的產品、課程與經營系統。加入後<strong>不會再收取任何手續費或平台費</strong>，之後只需負擔產品本身的費用。詳細方案與相關條件，將於一對一諮詢時完整說明。
+            </div>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ PREP + PAYMENT ============ -->
+<section>
+  <div class="wrap reveal two-col">
+    <div class="info-card">
+      <h3>上課前需要準備</h3>
+      <ul>
+        <li>可以正常拍攝及剪輯的手機</li>
+        <li>手機充電器或行動電源</li>
+        <li>耳機</li>
+        <li>事先下載指定剪輯軟體</li>
+        <li>帶著想學習及實際操作的心情</li>
+      </ul>
+      <p class="note">A方案現場採「探店」情境實作，當天在店家的消費（餐點、飲品）需自行付費，不包含在課程費用內。</p>
+      <p class="note">詳細課前準備與指定軟體，會於報名完成後另行通知。</p>
+    </div>
+    <div class="info-card">
+      <h3>付款方式</h3>
+      <ul>
+        <li>銀行轉帳</li>
+        <li>信用卡付款</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNUP STEPS ============ -->
+<section class="steps-section">
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center;">報名流程</div>
+    <h2>四個步驟，就能開始上課</h2>
+    <div class="steps-flow">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">選擇方案</div>
+        <p>挑選想了解的課程方案</p>
+      </div>
+      <div class="step-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#DD8A3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">加入 LINE</div>
+        <p>點擊按鈕加入 BIBI 的 LINE</p>
+      </div>
+      <div class="step-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#DD8A3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">確認時間</div>
+        <p>確認上課日期、地點及名額</p>
+      </div>
+      <div class="step-arrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#DD8A3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">完成報名</div>
+        <p>完成付款後，正式保留名額</p>
+      </div>
+    </div>
+    <p class="steps-note">課程採一對一客製化教學，依照你的程度與需求安排內容，每一梯次名額有限。</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="faq">
+  <div class="wrap reveal">
+    <div class="eyebrow" style="justify-content:center;">常見問題</div>
+    <h2>報名前，你可能想知道的事</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>完全沒有剪輯經驗，可以報名嗎？</summary>
+        <div class="faq-a">可以。如果你完全沒有拍攝及剪輯經驗，建議從A手機拍剪入門班開始；已經有基礎、想提升內容吸引力的話，可以直接選擇B吸睛短影音實戰班。</div>
+      </details>
+      <details class="faq-item">
+        <summary>只有手機可以上課嗎？</summary>
+        <div class="faq-a">可以。課程主要以手機拍攝及剪輯為主，請準備可以正常拍攝、儲存及執行剪輯軟體的手機。</div>
+      </details>
+      <details class="faq-item">
+        <summary>A、B兩種課程差在哪裡？</summary>
+        <div class="faq-a">A班著重基礎拍攝與剪輯，適合完全的新手；B班著重選題、腳本、美感及影片吸引力，適合已有基礎、想提升內容的人。</div>
+      </details>
+      <details class="faq-item">
+        <summary>上完課就一定會有流量或收入嗎？</summary>
+        <div class="faq-a">課程會分享BIBI七年累積的經驗、方法與實際做法，但自媒體成果仍會受到內容、產業、執行頻率及個人投入程度影響，因此不保證特定流量、粉絲數或收入成果。</div>
+      </details>
+      <details class="faq-item">
+        <summary>不知道自己適合哪個方案怎麼辦？</summary>
+        <div class="faq-a">可以先加入LINE，簡單告訴BIBI你目前是否有拍攝剪輯經驗，以及學習自媒體的主要目標，再協助你判斷適合的課程。</div>
+      </details>
+      <details class="faq-item">
+        <summary>課程可以刷卡嗎？</summary>
+        <div class="faq-a">可以。課程提供銀行轉帳、信用卡付款兩種方式，詳細付款連結將於報名時提供。</div>
+      </details>
+      <details class="faq-item">
+        <summary>上完A方案後，還可以再加購B方案嗎？</summary>
+        <div class="faq-a">可以。上完A方案的學員，在7天內加購B方案：如果B方案當時還在「前5名限定價」期間，就直接付當時的限定價（目前是$4,980），不會再另外折抵$1,000；如果B方案的限定名額已經額滿、恢復原價$6,980，這時候就能用原價折抵NT$1,000，也就是$5,980。簡單說，兩種優惠只能擇一使用，不會疊加，實際金額請於加入LINE後告知你上過A方案，會協助確認並計算。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final">
+  <div class="wrap reveal">
+    <div class="final-blob">
+      <h2>你不需要等到準備得很厲害，<br>才開始經營自媒體。</h2>
+      <p>很多人不是沒有能力，只是不知道第一步應該怎麼走。</p>
+      <p>如果你也想把自己的興趣、生活或專業分享出去，歡迎從適合自己的課程開始。我會把自己七年走過的經驗，整理成更清楚、更容易實際執行的方法，陪你完成從「想開始」到「真的做出來」的第一步。</p>
+      <p class="hero-note">一對一客製化教學｜實體操作｜名額有限</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © BIBI 自媒體實體課程．內容與作品成果、學員回饋將陸續更新
+</footer>
+
+<!-- ============ MOBILE STICKY CTA ============ -->
+<div class="mobile-sticky">
+  <a href="#" class="btn btn-line line-link">加入LINE詢問</a>
+</div>
+
+<script>
+  // ⚠️ 請將下方網址換成你自己的 LINE 連結
+  const LINE_URL = "https://lin.ee/neHFUpZ";
+
+  document.querySelectorAll('.line-link').forEach(el => {
+    el.setAttribute('href', LINE_URL);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // only one faq open at a time (optional, gentle)
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
